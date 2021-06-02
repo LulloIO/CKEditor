@@ -37,7 +37,8 @@ import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolo
 import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';//
 import ImageResize from '@ckeditor/ckeditor5-image/src/ImageResize';
 import AutoImage from '@ckeditor/ckeditor5-image/src/autoimage';//
-import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
+import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';//
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';//
 
 import sanitizeHtml from 'sanitize-html';
 
@@ -106,6 +107,7 @@ ClassicEditor.builtinPlugins = [
   AutoImage,
   Base64UploadAdapter,
   HtmlEmbed,
+  HorizontalLine,
 ];
 
 // Editor configuration.
@@ -118,12 +120,13 @@ ClassicEditor.defaultConfig = {
       'fontFamily',
       'fontColor',
       'fontBackgroundColor',
-			// 'bold',
-			// 'italic',
+			'bold',
+			'italic',
       'alignment',
 			'link',
 			'blockQuote',
 			'|',
+      'horizontalLine',
 			'bulletedList',
 			'numberedList',
 			'outdent',
@@ -159,6 +162,7 @@ ClassicEditor.defaultConfig = {
 	},
   htmlEmbed:{
     showPreviews: true,
+    placeholder: 'Cole o HTML aqui...',
     sanitizeHtml(inputHtml){
       console.log(inputHtml)
       const clean = sanitizeHtml(inputHtml, sanitizerOptions);
