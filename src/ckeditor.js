@@ -28,6 +28,8 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';//
+import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';//
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';//
@@ -100,6 +102,8 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
+  TableProperties,
+  TableCellProperties,
 	TextTransformation,
   Alignment,
   Font,
@@ -164,11 +168,9 @@ ClassicEditor.defaultConfig = {
     showPreviews: true,
     placeholder: 'Cole o HTML aqui...',
     sanitizeHtml(inputHtml){
-      console.log(inputHtml)
       const clean = sanitizeHtml(inputHtml, sanitizerOptions);
-      console.log(clean)
       return {
-        html: clean,
+        html: `<div class="isolate-css">${clean}</div>`,
         hasChanged: true,
       }
     }
@@ -178,7 +180,9 @@ ClassicEditor.defaultConfig = {
 		contentToolbar: [
 			'tableColumn',
 			'tableRow',
-			'mergeTableCells'
+			'mergeTableCells',
+      'tableProperties',
+      'tableCellProperties'
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
